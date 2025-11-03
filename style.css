@@ -1,0 +1,789 @@
+/* ======================================
+   1. VARIABLES ET RESET
+====================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --text-color: #333;
+    --light-gray: #f3f4f6;
+    --dark-gray: #4b5563;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+/* ======================================
+   2. BASE
+====================================== */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+    background-color: var(--white);
+    line-height: 1.6;
+    padding-top: 80px;
+}
+
+.container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ======================================
+   3. COMPOSANTS GÉNÉRIQUES
+====================================== */
+/* Boutons */
+.primary-btn, .secondary-btn {
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.primary-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.secondary-btn:hover {
+    background-color: rgba(37, 99, 235, 0.1);
+}
+
+.cv-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 10px auto;
+    width: fit-content;
+}
+
+.cv-button i {
+    margin-left: 10px;
+}
+
+.cv-button:hover {
+    background-color: #333;
+}
+
+/* Titres de section */
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-desc {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    color: var(--dark-gray);
+}
+
+/* ======================================
+   4. NAVIGATION
+====================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.navbar-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #000;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #666;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger-line {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+    margin: 3px 0;
+    transition: 0.4s;
+}
+
+/* ======================================
+   5. HERO SECTION
+====================================== */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 80px 0;
+    flex-wrap: wrap;
+}
+
+.hero-content {
+    width: 50%;
+    padding-right: 2rem;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.hero-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.hero-desc {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: black;
+    max-width: 90%;
+    
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0rem;
+}
+
+.hero-image-container {
+    width: 40%;
+}
+
+.hero-image {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.hero-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ======================================
+   6. PROJECTS SECTION
+====================================== */
+.projects-section {
+    padding: 80px 0;
+    background-color: var(--light-gray);
+    border-radius: 20px;
+    margin: 2rem 0;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 3fr));
+    gap: 1.2rem;
+    margin-top: 3rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.project-item {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    margin-bottom: 2rem;
+    
+}
+
+.project-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+.project-image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.project-info p {
+    color: var(--dark-gray);
+    margin-bottom: 1.2rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-tags span {
+    background-color: var(--light-gray);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--primary-color);
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.project-link i {
+    margin-left: 5px;
+    transition: var(--transition);
+}
+
+.project-link:hover {
+    color: var(--secondary-color);
+}
+
+.project-link:hover i {
+    transform: translateX(5px);
+}
+
+/* ======================================
+   7. PASSIONS SECTION
+====================================== */
+.passions-section {
+    padding: 80px 0;
+    border-radius: 20px;
+    background-color: var(--light-gray);
+}
+
+.passions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    gap: 50px;
+    margin-top: 3rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.passion-item {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: var(--white);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    
+}
+
+.passion-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.passion-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.passion-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+}
+
+.passion-item p {
+    color: var(--dark-gray);
+    margin-bottom: 1.5rem;
+    background-color: var(--light-gray);
+}
+
+.passion-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.passion-link i {
+    margin-left: 5px;
+    transition: var(--transition);
+}
+
+.passion-link:hover {
+    color: var(--secondary-color);
+}
+
+.passion-link:hover i {
+    transform: translateX(5px);
+}
+
+/* ======================================
+   COMPÉTENCES SECTION
+====================================== */
+.competences-section {
+    padding: 80px 0;
+    background-color: var(--light-gray);
+    border-radius: 20px;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.skills-category {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    width: 45%;
+    min-width: 300px;
+    transition: var(--transition);
+}
+
+.skills-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.skills-category h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.skills-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skills-category li {
+    font-size: 1rem;
+    color: var(--dark-gray);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.skills-category i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* ======================================
+   8. CONTACT SECTION
+====================================== */
+.contact-section {
+    padding: 80px 0;
+    background-color: var(--light-gray);
+    border-radius: 20px;
+    margin: 2rem 0;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.contact-item {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.contact-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.contact-item p {
+    color: var(--dark-gray);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-link {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    color: var(--primary-color);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.social-link:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ======================================
+   9. FOOTER
+====================================== */
+footer {
+    background-color: #333;
+    color: var(--white);
+    padding: 3rem 0;
+    margin-top: 4rem;
+    width: auto; 
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-logo h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-logo p {
+    color: #ccc;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-copyright {
+    color: #ccc;
+}
+
+/* ======================================
+   10. MEDIA QUERIES
+====================================== */
+/* Pour les tablettes */
+@media (max-width: 992px) {
+    .hero-content, .hero-image-container {
+        width: 100%;
+        padding-right: 0;
+    }
+    
+    .hero {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-desc {
+        max-width: 100%;
+    }
+    
+    .hero-cta {
+        justify-content: center;
+    }
+
+}
+
+/* Pour les tablettes et smartphones */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px;
+    }
+    
+    .navbar-title {
+        font-size: 1.8rem;
+        position: static;
+        transform: none;
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .hamburger-menu {
+        display: flex;
+        position: absolute;
+        right: 20px;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        gap: 30px;
+        padding: 50px 0;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links a {
+        font-size: 18px;
+    }
+    
+    .cv-button-container {
+        position: absolute;
+        right: 70px;
+    }
+    
+    .cv-button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .passions-grid, .projects-grid, .contact-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Pour les smartphones */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px;
+    }
+    
+    .navbar-title {
+        font-size: 1.5rem;
+    }
+    
+    .cv-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .cv-button i {
+        margin-left: 5px;
+    }
+    
+    .hamburger-menu {
+        right: 15px;
+    }
+    
+    .hamburger-menu.active .hamburger-line:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .hamburger-menu.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger-menu.active .hamburger-line:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .hero-cta a {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
+
+.visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0,0,0,0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
